@@ -55,6 +55,9 @@ npm run preview
 
 ## Deployment Notes
 
-- GitHub Pages, Netlify, Vercel, Hostinger static hosting, cPanel static hosting, and similar providers can all serve the built `dist/` output.
+- Netlify can deploy this site directly from GitHub using `netlify.toml`.
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Vercel, Hostinger static hosting, cPanel static hosting, and similar providers can also serve the built `dist/` output.
 - The site does not need a backend server or database.
 - The CV link points to the bundled local PDF at `/Mohamed_Magdy_CV.pdf`.
