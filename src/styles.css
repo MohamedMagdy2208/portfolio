@@ -51,10 +51,6 @@ body::before {
 .glow-border { border: 1px solid rgba(255,255,255,0.08); }
 .glow-border:hover { border-color: rgba(34, 211, 238, 0.45); }
 
-.brand-wordmark {
-  letter-spacing: 0.02em;
-}
-
 .interactive-card {
   position: relative;
   transition:
@@ -102,6 +98,16 @@ body::before {
 .hero-panel:hover .profile-frame {
   transform: scale(1.018);
   box-shadow: 0 0 34px -10px rgba(52, 211, 153, 0.72);
+}
+
+.profile-photo {
+  transform: scale(0.94);
+  transform-origin: center;
+  transition: transform 0.32s ease;
+}
+
+.hero-panel:hover .profile-photo {
+  transform: scale(0.96);
 }
 
 .top-achiever-badge {
@@ -226,7 +232,9 @@ button:focus-visible {
   .social-link,
   .social-link:hover,
   .profile-frame,
-  .hero-panel:hover .profile-frame {
+  .hero-panel:hover .profile-frame,
+  .profile-photo,
+  .hero-panel:hover .profile-photo {
     transform: none;
   }
   html { scroll-behavior: auto; }

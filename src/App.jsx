@@ -173,8 +173,8 @@ function Nav({ active }) {
   return (
     <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <a href="#home" className="brand-wordmark font-mono font-bold text-sm sm:text-base text-gray-100 hover:text-cyan-glow transition">
-          Mohamed<span className="text-gray-500"> Magdy</span>
+        <a href="#home" className="font-semibold text-base sm:text-lg text-gray-100 hover:text-cyan-glow transition-colors">
+          Mohamed Magdy
         </a>
         <div className="hidden md:flex items-center gap-7 text-sm text-gray-400">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link hover:text-cyan-glow transition-colors ${active === l.toLowerCase() ? "active" : ""}`}>{l}</a>)}
@@ -257,7 +257,7 @@ function Hero() {
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
           <div className="hero-panel interactive-card relative w-full max-w-sm rounded-2xl border border-white/10 bg-ink-panel/80 p-5 shadow-2xl shadow-black/30 backdrop-blur">
             <div className="profile-frame relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
-              <img src="/profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="w-full h-full object-cover rounded-2xl" />
+              <img src="/profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="profile-photo w-full h-full object-cover object-center rounded-2xl" />
             </div>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               <span className="top-achiever-badge bg-ink-soft glow-border rounded-lg px-4 py-2 text-xs font-mono text-cyan-glow">Top achiever</span>
