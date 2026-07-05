@@ -1,0 +1,22 @@
+{
+  "name": "mohamed-magdy-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "6.0.3",
+    "vite": "8.1.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.5.2",
+    "postcss": "8.5.16",
+    "tailwindcss": "3.4.16"
+  }
+}

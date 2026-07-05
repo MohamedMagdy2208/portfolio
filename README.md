@@ -1,68 +1,60 @@
-# Mohamed Magdy — AI Engineer Portfolio
+# Mohamed Magdy Portfolio
 
-A modern, responsive single-page portfolio built with **React + Tailwind CSS**.
-Theme: "Neural Dark" — deep charcoal with an electric cyan→violet gradient, plus a
-live animated neural-network background.
+A modern, responsive single-page portfolio built with Vite, React, and Tailwind CSS.
 
-🌐 Live domain: **https://mohamedmagdy.site**
+Live domain: **https://mohamedmagdy.site**
 
----
+## Stack
 
-## 📁 Files
+- Vite for local development and production builds
+- React 18 for the UI
+- Tailwind CSS compiled locally
+- Custom CSS for the neural dark theme, animations, preloader, and canvas backdrop
+- Static assets served from `public/`
 
-| File                    | Purpose                                              |
-|-------------------------|------------------------------------------------------|
-| `index.html`            | Page shell, SEO/Open-Graph meta, favicon, preloader  |
-| `styles.css`            | Theme, animations, scrollbar, responsive helpers     |
-| `app.js`                | All React components + the neural-canvas script      |
-| `profile.jpg`           | Hero photo (640×640)                                 |
-| `Mohamed_Magdy_CV.pdf`  | CV (linked from the Download-CV buttons)             |
-| `robots.txt`            | Search-engine crawl rules                            |
-| `sitemap.xml`           | Sitemap for Google indexing                          |
-| `CNAME`                 | Custom domain for GitHub Pages                       |
+## Files
 
-No build step required — it runs straight from these static files.
+| Path | Purpose |
+| --- | --- |
+| `index.html` | Page shell, SEO/Open Graph metadata, favicon, preloader root |
+| `src/main.jsx` | React entrypoint |
+| `src/App.jsx` | Portfolio content, components, and canvas behavior |
+| `src/styles.css` | Tailwind layers plus custom theme styles |
+| `public/profile.jpg` | Hero photo |
+| `public/Mohamed_Magdy_CV.pdf` | Downloadable CV |
+| `public/robots.txt` | Search-engine crawl rules |
+| `public/sitemap.xml` | Sitemap for indexing |
+| `public/CNAME` | Custom domain for GitHub Pages |
 
----
+## Local Development
 
-## 🚀 Deploy
+```bash
+npm install
+npm run dev
+```
 
-### Option A — Netlify (easiest)
-1. Go to https://app.netlify.com → log in.
-2. Drag this whole folder onto the deploy area → it goes live instantly.
-3. **Site settings → Domain management → Add custom domain** → `mohamedmagdy.site`.
-4. Add the DNS records Netlify shows you at your registrar (see below).
+## Production Build
 
-### Option B — Vercel
-1. https://vercel.com → New Project → import/upload this folder.
-2. Framework preset: **Other** (it's static). Deploy.
-3. **Settings → Domains** → add `mohamedmagdy.site`.
+```bash
+npm run build
+```
 
-### Option C — GitHub Pages
-1. Create a repo and upload all these files (the included `CNAME` sets your domain).
-2. **Settings → Pages** → Source: `main` branch, root.
-3. Wait for the green check → site is live on your domain.
+The production-ready static files are generated in:
 
-### DNS (at your domain registrar)
-| Type    | Name  | Value                                  |
-|---------|-------|----------------------------------------|
-| `A`     | `@`   | (the IP your host gives you)           |
-| `CNAME` | `www` | (your host target, e.g. `*.netlify.app`)|
+```bash
+dist/
+```
 
-Propagation takes 5 min–24 h. HTTPS is auto-issued by the host.
+Upload or deploy the contents of `dist/` to your host.
 
----
+## Preview Production Build
 
-## ✏️ Customizing
+```bash
+npm run preview
+```
 
-- **Edit content:** open `app.js` — all data lives in the `LINKS`, `SKILLS`,
-  `PROJECTS`, `EXPERIENCE`, and `CERTS` arrays near the top.
-- **Self-host the CV (optional):** the Download-CV buttons currently point to a
-  hosted URL. To serve the bundled PDF instead, set in `app.js`:
-  `cv: "Mohamed_Magdy_CV.pdf"` (the file is already in this folder).
-- **Colors:** tweak the `cyan.glow` / `violet.glow` values in the `tailwind.config`
-  block inside `index.html`.
+## Deployment Notes
 
----
-
-Built with ❤️ — React 18, Tailwind CSS, vanilla canvas animation.
+- GitHub Pages, Netlify, Vercel, Hostinger static hosting, cPanel static hosting, and similar providers can all serve the built `dist/` output.
+- The site does not need a backend server or database.
+- The CV link points to the bundled local PDF at `/Mohamed_Magdy_CV.pdf`.

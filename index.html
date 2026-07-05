@@ -25,36 +25,9 @@
   <!-- Inline SVG favicon (neural node) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='bold' text-anchor='middle' fill='%2322d3ee'%3EM%3C/text%3E%3C/svg%3E" />
 
-  <!-- Pinned Tailwind runtime -->
-  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-  <!-- React + Babel (CDN, for self-contained preview) -->
-  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            ink: '#0a0a0f',
-            'ink-soft': '#10101a',
-            cyan: { glow: '#22d3ee' },
-            violet: { glow: '#a855f7' },
-          },
-        },
-      },
-    };
-  </script>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-ink text-gray-200 font-sans antialiased">
   <!-- Preloader -->
@@ -68,6 +41,6 @@
 
   <canvas id="neural-canvas"></canvas>
   <div id="root"></div>
-  <script type="text/babel" src="app.js" data-presets="react"></script>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef } = React;
+import { useEffect, useRef, useState } from "react";
 
 /* ---------------- DATA (from CV + GitHub) ---------------- */
 const LINKS = {
@@ -7,17 +7,29 @@ const LINKS = {
   github: "https://github.com/MohamedMagdy2208",
   linkedin: "https://www.linkedin.com/in/mohamed-magdy-a70779216",
   kaggle: "https://www.kaggle.com/mohamedmagdy2208",
-  cv: "https://gumloop.com/files/TAdtkDqAbaivnYaY7QdDmb?version_id=gx3SPa4uRjbuevZX5dzMro",
+  cv: "/Mohamed_Magdy_CV.pdf",
   location: "Cairo, Egypt",
 };
 
 const SKILLS = [
-  { group: "Generative AI & Search", items: ["OpenAI", "LLMs (GPT, LLaMA)", "AI Agents", "Prompt Engineering", "Standard & Graph RAG", "Vector Databases", "Hybrid Search (HNSW, BM25)", "Advanced Chunking", "LangChain", "LangSmith"] },
-  { group: "Cloud & Infrastructure", items: ["Microsoft Azure", "Azure OpenAI", "Azure AI Services", "Docker", "Git", "CI/CD"] },
-  { group: "Backend & Automation", items: ["FastAPI", "Redis Caching", "n8n"] },
-  { group: "Machine Learning & CV", items: ["CNNs", "Transformers", "YOLO", "SAM", "Scikit-Learn", "TensorFlow", "PyTorch"] },
-  { group: "Data & BI", items: ["Python", "SQL", "Pandas", "NumPy", "Power BI", "Tableau", "Excel"] },
-  { group: "Engineering", items: ["Digital Twins", "Predictive Maintenance"] },
+  { group: "Generative AI & Search", note: "Retrieval, agents, and evaluation loops", items: ["OpenAI", "LLMs (GPT, LLaMA)", "AI Agents", "Prompt Engineering", "Standard & Graph RAG", "Vector Databases", "Hybrid Search (HNSW, BM25)", "Advanced Chunking", "LangChain", "LangSmith"] },
+  { group: "Cloud & Infrastructure", note: "Production-ready Azure deployments", items: ["Microsoft Azure", "Azure OpenAI", "Azure AI Services", "Docker", "Git", "CI/CD"] },
+  { group: "Backend & Automation", note: "APIs, caching, and workflow automation", items: ["FastAPI", "Redis Caching", "n8n"] },
+  { group: "Machine Learning & CV", note: "Vision models and applied deep learning", items: ["CNNs", "Transformers", "YOLO", "SAM", "Scikit-Learn", "TensorFlow", "PyTorch"] },
+  { group: "Data & BI", note: "Analysis pipelines and decision dashboards", items: ["Python", "SQL", "Pandas", "NumPy", "Power BI", "Tableau", "Excel"] },
+  { group: "Engineering", note: "Industrial AI and simulation workflows", items: ["Digital Twins", "Predictive Maintenance"] },
+];
+
+const HERO_METRICS = [
+  { value: "6+", label: "AI & data roles", tone: "cyan" },
+  { value: "15", label: "public repos", tone: "emerald" },
+  { value: "2", label: "EG + KR work", tone: "amber" },
+];
+
+const FOCUS_AREAS = [
+  "Graph RAG and hybrid retrieval",
+  "Computer vision for real-world inspection",
+  "Digital twins and predictive maintenance",
 ];
 
 const PROJECTS = [
@@ -25,6 +37,7 @@ const PROJECTS = [
     title: "Chat With CVs — RAG System",
     tag: "Generative AI · RAG",
     desc: "An LLM-powered RAG system that lets you chat with and query CVs/documents in natural language — retrieval pipelines over unstructured text for intelligent document Q&A.",
+    impact: "Turns unstructured resumes into searchable, conversational candidate knowledge.",
     stack: ["Python", "LLMs", "RAG", "Vector DB", "LangChain"],
     accent: "cyan", lang: "Python", stars: 1,
     url: "https://github.com/MohamedMagdy2208/Chat-With-CVs-Rag-System",
@@ -33,6 +46,7 @@ const PROJECTS = [
     title: "Chat With Database",
     tag: "AI Agents · LLM",
     desc: "A natural-language-to-SQL agent that translates plain-English questions into database queries, letting non-technical users explore data conversationally through an LLM.",
+    impact: "Makes database exploration usable for business users without writing SQL.",
     stack: ["Python", "LLMs", "SQL", "AI Agents"],
     accent: "violet", lang: "Python", stars: 1,
     url: "https://github.com/MohamedMagdy2208/Chat-With-Database",
@@ -41,6 +55,7 @@ const PROJECTS = [
     title: "Azure AI Document Intelligence",
     tag: "Azure · Document AI",
     desc: "A Streamlit app built on Azure AI Document Intelligence Studio for enterprise-grade document parsing, extraction and analysis — production document intelligence in action.",
+    impact: "Extracts structured fields from documents for faster review and automation.",
     stack: ["Azure AI", "Streamlit", "Python", "OCR"],
     accent: "cyan", lang: "Python", stars: 0,
     url: "https://github.com/MohamedMagdy2208/azure-ai-document-intelligence-studio-latest",
@@ -49,6 +64,7 @@ const PROJECTS = [
     title: "Brain Tumor Detection — CNN",
     tag: "Computer Vision · Deep Learning",
     desc: "A Convolutional Neural Network for classifying brain tumors from MRI scans — applying deep learning to medical imaging for high-accuracy diagnostic support.",
+    impact: "Applies image classification to medical scan triage and diagnostic support.",
     stack: ["CNN", "TensorFlow", "OpenCV", "Medical Imaging"],
     accent: "violet", lang: "Jupyter Notebook", stars: 2,
     url: "https://github.com/MohamedMagdy2208/Brain-Tumor-CNN",
@@ -57,6 +73,7 @@ const PROJECTS = [
     title: "LLM Sentiment Analysis",
     tag: "NLP · LLM",
     desc: "Sentiment classification powered by large language models, extracting tone and emotion from text with modern transformer-based NLP techniques.",
+    impact: "Classifies customer or content sentiment with modern transformer-based NLP.",
     stack: ["Python", "LLMs", "Transformers", "NLP"],
     accent: "cyan", lang: "Python", stars: 1,
     url: "https://github.com/MohamedMagdy2208/LLM-Sentiment-Analysis",
@@ -65,6 +82,7 @@ const PROJECTS = [
     title: "Breast Cancer Prediction — ANN",
     tag: "Machine Learning · Healthcare",
     desc: "An Artificial Neural Network predicting breast cancer diagnoses from clinical features — end-to-end ML pipeline for reliable, data-driven medical classification.",
+    impact: "Builds an interpretable clinical-feature pipeline for healthcare prediction.",
     stack: ["ANN", "Scikit-Learn", "Pandas", "NumPy"],
     accent: "violet", lang: "Jupyter Notebook", stars: 2,
     url: "https://github.com/MohamedMagdy2208/Breast-Cancer-ANN",
@@ -95,7 +113,7 @@ function useReveal() {
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
-  });
+  }, []);
 }
 
 /* Count-up number animation */
@@ -104,6 +122,10 @@ function CountUp({ value, suffix = "", duration = 1400 }) {
   const ref = useRef(null);
   const done = useRef(false);
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setN(value);
+      return undefined;
+    }
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting && !done.current) {
@@ -121,7 +143,7 @@ function CountUp({ value, suffix = "", duration = 1400 }) {
     }, { threshold: 0.5 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, [value]);
+  }, [value, duration]);
   return <span ref={ref}>{n}{suffix}</span>;
 }
 
@@ -154,7 +176,7 @@ function Nav({ active }) {
         <a href="#home" className="font-mono font-bold text-lg grad-text">MM<span className="text-gray-500">.ai</span></a>
         <div className="hidden md:flex items-center gap-7 text-sm text-gray-400">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link hover:text-cyan-glow transition-colors ${active === l.toLowerCase() ? "active" : ""}`}>{l}</a>)}
-          <a href={LINKS.cv} target="_blank" rel="noopener" download className="flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
           <a href={`mailto:${LINKS.email}`} className="px-4 py-2 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">Hire Me</a>
         </div>
         <button className="md:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -164,7 +186,7 @@ function Nav({ active }) {
       {open && (
         <div className="md:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} className="hover:text-cyan-glow">{l}</a>)}
-          <a href={LINKS.cv} target="_blank" rel="noopener" download onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-cyan-glow"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-cyan-glow"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
           <a href={`mailto:${LINKS.email}`} className="px-4 py-2 rounded-lg text-ink font-semibold text-center bg-gradient-to-r from-cyan-glow to-violet-glow">Hire Me</a>
         </div>
       )}
@@ -174,6 +196,11 @@ function Nav({ active }) {
 
 function Hero() {
   const roles = ["Generative AI Engineer", "Graph RAG Architect", "Computer Vision Engineer", "Digital Twin Engineer"];
+  const metricTone = {
+    cyan: "border-cyan-glow/30 bg-cyan-glow/5 text-cyan-glow",
+    emerald: "border-emerald-signal/30 bg-emerald-signal/5 text-emerald-signal",
+    amber: "border-amber-proof/30 bg-amber-proof/5 text-amber-proof",
+  };
   const [idx, setIdx] = useState(0);
   const [txt, setTxt] = useState("");
   const [del, setDel] = useState(false);
@@ -188,39 +215,63 @@ function Hero() {
   }, [txt, del, idx]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 px-5">
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-5 gap-10 items-center">
-        <div className="md:col-span-3">
-          <span className="inline-flex items-center gap-2 text-xs font-mono text-cyan-glow border border-cyan-glow/30 rounded-full px-3 py-1 mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyan-glow animate-pulse"></span> Available for AI roles
+    <section id="home" className="relative min-h-screen flex items-center px-5 pb-16 pt-24">
+      <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="lg:col-span-7">
+          <span className="inline-flex items-center gap-2 text-xs font-mono text-emerald-signal border border-emerald-signal/30 bg-emerald-signal/5 rounded-full px-3 py-1 mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-signal pulse-dot"></span> Open to AI engineering roles
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white">
             Mohamed Magdy
           </h1>
-          <p className="mt-3 text-xl sm:text-2xl font-mono">
+          <p className="mt-4 max-w-2xl text-2xl sm:text-3xl font-semibold leading-tight text-gray-100">
+            I build production-minded AI systems for retrieval, vision, and industrial workflows.
+          </p>
+          <p className="mt-4 text-base sm:text-lg font-mono">
             <span className="grad-text font-semibold">{txt}</span><span className="cursor h-6"></span>
           </p>
-          <p className="mt-6 text-gray-400 max-w-xl leading-relaxed">
-            AI Engineer & Data Scientist specializing in <span className="text-gray-200">Generative AI</span>, <span className="text-gray-200">Computer Vision</span> and <span className="text-gray-200">Industry 4.0</span> systems. I turn complex AI architectures — from Graph RAG to Digital Twins — into production-ready business value.
+          <p className="mt-6 text-gray-400 max-w-2xl leading-relaxed">
+            AI Engineer and Data Scientist based in Cairo, focused on <span className="text-gray-200">Graph RAG</span>, <span className="text-gray-200">computer vision</span>, and <span className="text-gray-200">Industry 4.0</span>. I turn research-heavy ideas into practical systems with APIs, retrieval pipelines, dashboards, and cloud deployment paths.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a href="#projects" className="px-6 py-3 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition flex items-center gap-2">View Projects <Icon d={icons.arrow} className="w-4 h-4"/></a>
-            <a href={LINKS.cv} target="_blank" rel="noopener" download className="px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-white transition flex items-center gap-2"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
+            <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-white transition flex items-center gap-2"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
+          </div>
+          <div className="mt-8 grid grid-cols-3 gap-3 max-w-2xl">
+            {HERO_METRICS.map((metric) => (
+              <div key={metric.label} className={`rounded-lg border px-3 py-3 ${metricTone[metric.tone]}`}>
+                <div className="font-mono text-xl font-bold">{metric.value}</div>
+                <div className="mt-1 text-[11px] uppercase tracking-[0.12em] text-gray-500">{metric.label}</div>
+              </div>
+            ))}
           </div>
           <div className="mt-8 flex items-center gap-5 text-gray-400">
-            <a href={LINKS.github} target="_blank" className="hover:text-cyan-glow transition" aria-label="GitHub"><Icon d={icons.github}/></a>
-            <a href={LINKS.linkedin} target="_blank" className="hover:text-cyan-glow transition" aria-label="LinkedIn"><Icon d={icons.linkedin}/></a>
-            <a href={LINKS.kaggle} target="_blank" className="hover:text-cyan-glow transition" aria-label="Kaggle"><Icon d={icons.chart}/></a>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="GitHub"><Icon d={icons.github}/></a>
+            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="LinkedIn"><Icon d={icons.linkedin}/></a>
+            <a href={LINKS.kaggle} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="Kaggle"><Icon d={icons.chart}/></a>
             <a href={`mailto:${LINKS.email}`} className="hover:text-cyan-glow transition" aria-label="Email"><Icon d={icons.mail}/></a>
           </div>
         </div>
-        <div className="md:col-span-2 flex justify-center">
-          <div className="float relative">
-            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow to-violet-glow glow-cyan">
-              <img src="profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="w-full h-full object-cover rounded-2xl" />
+        <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="hero-panel relative w-full max-w-sm rounded-2xl border border-white/10 bg-ink-panel/80 p-5 shadow-2xl shadow-black/30 backdrop-blur">
+            <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
+              <img src="/profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="w-full h-full object-cover rounded-2xl" />
             </div>
-            <div className="absolute -top-3 -right-3 bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-cyan-glow">Top Achiever 🏆</div>
-            <div className="absolute -bottom-3 -left-3 bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-violet-glow">6+ AI roles</div>
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              <span className="bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-cyan-glow">Top achiever</span>
+              <span className="bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-emerald-signal">Azure + FastAPI</span>
+            </div>
+            <div className="mt-5 rounded-xl border border-white/10 bg-black/20 p-4">
+              <p className="text-xs font-mono uppercase tracking-[0.18em] text-cyan-glow">Current focus</p>
+              <ul className="mt-3 space-y-2">
+                {FOCUS_AREAS.map((area) => (
+                  <li key={area} className="flex items-start gap-2 text-sm text-gray-300">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-signal"></span>
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -233,12 +284,12 @@ function Hero() {
 
 function Section({ id, kicker, title, children }) {
   return (
-    <section id={id} className="relative px-5 py-24">
+    <section id={id} className="relative px-5 py-24 sm:py-28">
       <div className="max-w-6xl mx-auto">
         <div className="reveal mb-12">
-          <p className="font-mono text-cyan-glow text-sm mb-2">{kicker}</p>
+          <p className="font-mono text-cyan-glow text-sm mb-2 tracking-[0.16em] uppercase">{kicker}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">{title}</h2>
-          <div className="mt-4 h-1 w-20 rounded bg-gradient-to-r from-cyan-glow to-violet-glow"></div>
+          <div className="mt-4 h-1 w-20 rounded bg-gradient-to-r from-cyan-glow via-emerald-signal to-violet-glow"></div>
         </div>
         {children}
       </div>
@@ -254,16 +305,16 @@ function About() {
     { v: 2, suffix: "", l: "Countries (EG · KR)" },
   ];
   return (
-    <Section id="about" kicker="01 — About" title="Who I Am">
+    <Section id="about" kicker="01 — About" title="Builder-first AI Engineer">
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 reveal space-y-4 text-gray-400 leading-relaxed">
-          <p>I'm an <span className="text-gray-100 font-medium">AI Engineer</span> based in Cairo, Egypt, building enterprise-grade Generative AI and Computer Vision systems. My work spans <span className="text-cyan-glow">standard & Graph RAG pipelines</span>, LLM-powered workflows, and highly optimized hybrid search solutions deployed to production on Azure.</p>
-          <p>I've engineered everything from an <span className="text-gray-100">Airport Lost & Found System</span> for real clients, to <span className="text-gray-100">Digital Twins</span> and predictive maintenance systems for Industry 4.0, to <span className="text-gray-100">YOLO-based hazard detection</span> during a fully-funded research scholarship in South Korea.</p>
-          <p>I love translating complex AI architectures into measurable, real-world business value.</p>
+          <p>I work best at the intersection of <span className="text-gray-100 font-medium">AI engineering</span>, product thinking, and applied research. My strongest projects combine retrieval pipelines, model orchestration, and pragmatic backend design so teams can use AI in real workflows.</p>
+          <p>Recent work includes a production-ready <span className="text-cyan-glow">Airport Lost & Found System</span> using LLMs, Graph RAG, FastAPI, Redis, and Azure, plus computer-vision and digital-twin systems for safety and industrial monitoring.</p>
+          <p>The through-line: I care about systems that can be evaluated, deployed, explained, and improved after the demo.</p>
         </div>
         <div className="reveal grid grid-cols-2 gap-4">
           {stats.map((s) => (
-            <div key={s.l} className="bg-ink-soft glow-border rounded-xl p-5 text-center hover:scale-[1.03] transition">
+            <div key={s.l} className="bg-ink-panel/80 glow-border rounded-xl p-5 text-center hover:-translate-y-1 transition">
               <div className="text-2xl font-bold grad-text font-mono"><CountUp value={s.v} suffix={s.suffix} /></div>
               <div className="text-xs text-gray-500 mt-1">{s.l}</div>
             </div>
@@ -279,10 +330,13 @@ function Skills() {
     <Section id="skills" kicker="02 — Stack" title="Technical Skills">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {SKILLS.map((s, i) => (
-          <div key={s.group} className="reveal bg-ink-soft glow-border rounded-xl p-6 hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 40}ms` }}>
-            <div className="flex items-center gap-2 mb-4">
+          <div key={s.group} className="reveal bg-ink-panel/80 glow-border rounded-xl p-6 hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 40}ms` }}>
+            <div className="flex items-start gap-3 mb-4">
               <span className="text-cyan-glow"><Icon d={icons.spark} className="w-4 h-4"/></span>
-              <h3 className="font-semibold text-white text-sm">{s.group}</h3>
+              <div>
+                <h3 className="font-semibold text-white text-sm">{s.group}</h3>
+                <p className="mt-1 text-xs text-gray-500">{s.note}</p>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {s.items.map((it) => (
@@ -299,27 +353,31 @@ function Skills() {
 function Projects() {
   return (
     <Section id="projects" kicker="03 — Work" title="Featured Projects">
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {PROJECTS.map((p, i) => (
-          <div key={p.title} className="reveal group bg-ink-soft glow-border rounded-xl p-6 flex flex-col hover:-translate-y-1.5 transition" style={{ transitionDelay: `${i * 50}ms` }}>
+          <div key={p.title} className="reveal group bg-ink-panel/80 glow-border rounded-xl p-6 flex flex-col hover:-translate-y-1.5 transition" style={{ transitionDelay: `${i * 50}ms` }}>
             <div className="flex items-start justify-between gap-3">
               <div className={`text-xs font-mono ${p.accent === 'cyan' ? 'text-cyan-glow' : 'text-violet-glow'}`}>{p.tag}</div>
-              <a href={p.url} target="_blank" className="text-gray-500 group-hover:text-cyan-glow transition" aria-label="Code"><Icon d={icons.github} className="w-5 h-5"/></a>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-gray-500 group-hover:text-cyan-glow transition" aria-label="Code"><Icon d={icons.github} className="w-5 h-5"/></a>
             </div>
-            <a href={p.url} target="_blank"><h3 className="mt-3 text-lg font-semibold text-white group-hover:grad-text transition">{p.title}</h3></a>
+            <a href={p.url} target="_blank" rel="noopener noreferrer"><h3 className="mt-3 text-lg font-semibold text-white group-hover:grad-text transition">{p.title}</h3></a>
             <p className="mt-2 text-sm text-gray-400 leading-relaxed flex-1">{p.desc}</p>
+            <div className="mt-4 border-l-2 border-emerald-signal/60 pl-3">
+              <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-emerald-signal">What it proves</p>
+              <p className="mt-1 text-sm text-gray-300 leading-relaxed">{p.impact}</p>
+            </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {p.stack.map((t) => <span key={t} className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">{t}</span>)}
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-4 text-xs text-gray-500 font-mono">
+            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between gap-4 text-xs text-gray-500 font-mono">
               <span className="flex items-center gap-1.5"><span className={`w-2.5 h-2.5 rounded-full ${p.lang === 'Python' ? 'bg-cyan-glow' : 'bg-violet-glow'}`}></span>{p.lang}</span>
-              <span className="flex items-center gap-1"><Icon d={icons.star} className="w-3.5 h-3.5"/> {p.stars}</span>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-gray-400 hover:text-cyan-glow transition">Repo <Icon d={icons.arrow} className="w-3.5 h-3.5"/></a>
             </div>
           </div>
         ))}
       </div>
       <div className="reveal mt-10 text-center">
-        <a href={LINKS.github} target="_blank" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-cyan-glow transition">
+        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-cyan-glow transition">
           <Icon d={icons.github} className="w-5 h-5"/> View all 15 repositories on GitHub <Icon d={icons.arrow} className="w-4 h-4"/>
         </a>
       </div>
@@ -332,8 +390,8 @@ function Certs() {
     <Section id="certs" kicker="04 — Recognition" title="Achievements & Certifications">
       <div className="grid sm:grid-cols-2 gap-6">
         {CERTS.map((c, i) => (
-          <div key={c.title} className="reveal bg-ink-soft glow-border rounded-xl p-6 flex gap-4 items-start hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 50}ms` }}>
-            <div className="shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-glow/20 to-violet-glow/20 flex items-center justify-center text-cyan-glow">
+          <div key={c.title} className="reveal bg-ink-panel/80 glow-border rounded-xl p-6 flex gap-4 items-start hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 50}ms` }}>
+            <div className="shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-glow/15 via-emerald-signal/10 to-violet-glow/15 flex items-center justify-center text-cyan-glow">
               <Icon d={icons[c.icon]} className="w-5 h-5"/>
             </div>
             <div>
@@ -354,7 +412,7 @@ function Experience() {
       <div className="relative border-l border-white/10 ml-3 space-y-10">
         {EXPERIENCE.map((e, i) => (
           <div key={i} className="reveal relative pl-8">
-            <span className="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-cyan-glow to-violet-glow glow-cyan"></span>
+            <span className="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan"></span>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-semibold text-white">{e.role}</h3>
               <span className="text-xs font-mono text-cyan-glow">{e.date}</span>
@@ -368,7 +426,7 @@ function Experience() {
           </div>
         ))}
       </div>
-      <div className="reveal mt-12 bg-ink-soft glow-border rounded-xl p-6 flex items-center justify-between flex-wrap gap-3">
+      <div className="reveal mt-12 bg-ink-panel/80 glow-border rounded-xl p-6 flex items-center justify-between flex-wrap gap-3">
         <div>
           <h3 className="font-semibold text-white">B.Sc. Computer Science</h3>
           <p className="text-sm text-gray-400">October 6 University · GPA 3.37 / 4.0</p>
@@ -381,21 +439,29 @@ function Experience() {
 
 function Contact() {
   return (
-    <Section id="contact" kicker="06 — Contact" title="Let's Build Something">
-      <div className="reveal bg-gradient-to-br from-cyan-glow/10 to-violet-glow/10 glow-border rounded-2xl p-8 sm:p-12 text-center">
-        <p className="text-gray-300 max-w-xl mx-auto">I'm open to AI Engineering and Data Science opportunities. Whether it's Generative AI, Computer Vision, or Industry 4.0 — let's talk.</p>
-        <a href={`mailto:${LINKS.email}`} className="inline-flex items-center gap-2 mt-7 px-8 py-3.5 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">
-          <Icon d={icons.mail} className="w-5 h-5"/> {LINKS.email}
+    <Section id="contact" kicker="06 — Contact" title="Ready to Build Useful AI">
+      <div className="reveal contact-panel glow-border rounded-2xl p-8 sm:p-12 text-center">
+        <p className="text-gray-300 max-w-2xl mx-auto">I'm open to AI Engineering and Data Science opportunities where the work needs more than a demo: strong retrieval, clean APIs, careful evaluation, and a path to production.</p>
+        <a href={`mailto:${LINKS.email}`} className="inline-flex max-w-full items-center justify-center gap-2 mt-7 px-4 sm:px-8 py-3.5 rounded-lg text-ink text-sm sm:text-base font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">
+          <Icon d={icons.mail} className="w-5 h-5 shrink-0"/> <span className="break-all">{LINKS.email}</span>
         </a>
+        <div className="mt-8 grid sm:grid-cols-3 gap-3 text-left">
+          {["Generative AI systems", "Computer vision workflows", "Industrial AI products"].map((item) => (
+            <div key={item} className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-gray-300">
+              <span className="text-emerald-signal font-mono text-xs">Available for</span>
+              <p className="mt-1">{item}</p>
+            </div>
+          ))}
+        </div>
         <div className="mt-8 flex items-center justify-center gap-6 text-gray-400 flex-wrap">
-          <a href={LINKS.github} target="_blank" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.github}/> GitHub</a>
-          <a href={LINKS.linkedin} target="_blank" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.linkedin}/> LinkedIn</a>
-          <a href={LINKS.kaggle} target="_blank" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.chart}/> Kaggle</a>
-          <a href={LINKS.cv} target="_blank" rel="noopener" download className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.download}/> CV</a>
+          <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.github}/> GitHub</a>
+          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.linkedin}/> LinkedIn</a>
+          <a href={LINKS.kaggle} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.chart}/> Kaggle</a>
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="hover:text-cyan-glow transition flex items-center gap-2 text-sm"><Icon d={icons.download}/> CV</a>
         </div>
         <p className="mt-6 text-sm text-gray-500 font-mono flex items-center justify-center gap-2"><Icon d={icons.pin} className="w-4 h-4"/> {LINKS.location} · {LINKS.phone}</p>
       </div>
-      <p className="text-center text-gray-600 text-xs mt-12 font-mono">© 2026 Mohamed Magdy · <a href="https://mohamedmagdy.site" className="hover:text-cyan-glow transition">mohamedmagdy.site</a> · Built with React + Tailwind</p>
+      <p className="text-center text-gray-600 text-xs mt-12 font-mono">© 2026 Mohamed Magdy · <a href="https://mohamedmagdy.site" className="hover:text-cyan-glow transition">mohamedmagdy.site</a> · Built with Vite + React + Tailwind</p>
     </Section>
   );
 }
@@ -455,7 +521,7 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+export default App;
 
 /* ---------------- Neural network canvas background ---------------- */
 (function neuralCanvas() {
@@ -466,8 +532,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const count = Math.min(90, Math.floor((w * h) / 16000));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
@@ -489,7 +561,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       // mouse repulsion
       const dxm = p.x - mouse.x, dym = p.y - mouse.y;
       const dm = Math.hypot(dxm, dym);
-      if (dm < 120) { p.x += dxm / dm * 0.8; p.y += dym / dm * 0.8; }
+      if (dm > 0 && dm < 120) { p.x += dxm / dm * 0.8; p.y += dym / dm * 0.8; }
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -522,9 +594,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 })();
 
 /* ---------------- Preloader removal ---------------- */
-window.addEventListener("load", () => {
+function hidePreloader() {
   setTimeout(() => {
     const pre = document.getElementById("preloader");
     if (pre) pre.classList.add("hide");
   }, 500);
-});
+}
+
+if (document.readyState === "complete") {
+  hidePreloader();
+} else {
+  window.addEventListener("load", hidePreloader, { once: true });
+}
