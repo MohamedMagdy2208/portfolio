@@ -173,11 +173,13 @@ function Nav({ active }) {
   return (
     <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <a href="#home" className="font-mono font-bold text-lg grad-text">MM<span className="text-gray-500">.ai</span></a>
+        <a href="#home" className="brand-wordmark font-mono font-bold text-sm sm:text-base text-gray-100 hover:text-cyan-glow transition">
+          Mohamed<span className="text-gray-500"> Magdy</span>
+        </a>
         <div className="hidden md:flex items-center gap-7 text-sm text-gray-400">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link hover:text-cyan-glow transition-colors ${active === l.toLowerCase() ? "active" : ""}`}>{l}</a>)}
-          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
-          <a href={`mailto:${LINKS.email}`} className="px-4 py-2 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">Hire Me</a>
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="social-link flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
+          <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow transition">Hire Me</a>
         </div>
         <button className="md:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menu">
           <Icon d={open ? <path d="M18 6 6 18M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>} className="w-6 h-6" />
@@ -187,7 +189,7 @@ function Nav({ active }) {
         <div className="md:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} className="hover:text-cyan-glow">{l}</a>)}
           <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-cyan-glow"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
-          <a href={`mailto:${LINKS.email}`} className="px-4 py-2 rounded-lg text-ink font-semibold text-center bg-gradient-to-r from-cyan-glow to-violet-glow">Hire Me</a>
+          <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold text-center bg-gradient-to-r from-cyan-glow to-violet-glow">Hire Me</a>
         </div>
       )}
     </nav>
@@ -234,32 +236,31 @@ function Hero() {
             AI Engineer and Data Scientist based in Cairo, focused on <span className="text-gray-200">Graph RAG</span>, <span className="text-gray-200">computer vision</span>, and <span className="text-gray-200">Industry 4.0</span>. I turn research-heavy ideas into practical systems with APIs, retrieval pipelines, dashboards, and cloud deployment paths.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href="#projects" className="px-6 py-3 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition flex items-center gap-2">View Projects <Icon d={icons.arrow} className="w-4 h-4"/></a>
-            <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-white transition flex items-center gap-2"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
+            <a href="#projects" className="interactive-button group px-6 py-3 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow transition flex items-center gap-2">View Projects <Icon d={icons.arrow} className="w-4 h-4 transition-transform group-hover:translate-x-1"/></a>
+            <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="interactive-button px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-white transition flex items-center gap-2"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
           </div>
           <div className="mt-8 grid grid-cols-3 gap-3 max-w-2xl">
             {HERO_METRICS.map((metric) => (
-              <div key={metric.label} className={`rounded-lg border px-3 py-3 ${metricTone[metric.tone]}`}>
+              <div key={metric.label} className={`interactive-card rounded-lg border px-3 py-3 ${metricTone[metric.tone]}`}>
                 <div className="font-mono text-xl font-bold">{metric.value}</div>
                 <div className="mt-1 text-[11px] uppercase tracking-[0.12em] text-gray-500">{metric.label}</div>
               </div>
             ))}
           </div>
           <div className="mt-8 flex items-center gap-5 text-gray-400">
-            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="GitHub"><Icon d={icons.github}/></a>
-            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="LinkedIn"><Icon d={icons.linkedin}/></a>
-            <a href={LINKS.kaggle} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow transition" aria-label="Kaggle"><Icon d={icons.chart}/></a>
-            <a href={`mailto:${LINKS.email}`} className="hover:text-cyan-glow transition" aria-label="Email"><Icon d={icons.mail}/></a>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="social-link hover:text-cyan-glow transition" aria-label="GitHub"><Icon d={icons.github}/></a>
+            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="social-link hover:text-cyan-glow transition" aria-label="LinkedIn"><Icon d={icons.linkedin}/></a>
+            <a href={LINKS.kaggle} target="_blank" rel="noopener noreferrer" className="social-link hover:text-cyan-glow transition" aria-label="Kaggle"><Icon d={icons.chart}/></a>
+            <a href={`mailto:${LINKS.email}`} className="social-link hover:text-cyan-glow transition" aria-label="Email"><Icon d={icons.mail}/></a>
           </div>
         </div>
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
-          <div className="hero-panel relative w-full max-w-sm rounded-2xl border border-white/10 bg-ink-panel/80 p-5 shadow-2xl shadow-black/30 backdrop-blur">
-            <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
+          <div className="hero-panel interactive-card relative w-full max-w-sm rounded-2xl border border-white/10 bg-ink-panel/80 p-5 shadow-2xl shadow-black/30 backdrop-blur">
+            <div className="profile-frame relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
               <img src="/profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="w-full h-full object-cover rounded-2xl" />
             </div>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <span className="bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-cyan-glow">Top achiever</span>
-              <span className="bg-ink-soft glow-border rounded-lg px-3 py-2 text-xs font-mono text-emerald-signal">Azure + FastAPI</span>
+              <span className="top-achiever-badge bg-ink-soft glow-border rounded-lg px-4 py-2 text-xs font-mono text-cyan-glow">Top achiever</span>
             </div>
             <div className="mt-5 rounded-xl border border-white/10 bg-black/20 p-4">
               <p className="text-xs font-mono uppercase tracking-[0.18em] text-cyan-glow">Current focus</p>
@@ -314,7 +315,7 @@ function About() {
         </div>
         <div className="reveal grid grid-cols-2 gap-4">
           {stats.map((s) => (
-            <div key={s.l} className="bg-ink-panel/80 glow-border rounded-xl p-5 text-center hover:-translate-y-1 transition">
+            <div key={s.l} className="interactive-card bg-ink-panel/80 glow-border rounded-xl p-5 text-center transition">
               <div className="text-2xl font-bold grad-text font-mono"><CountUp value={s.v} suffix={s.suffix} /></div>
               <div className="text-xs text-gray-500 mt-1">{s.l}</div>
             </div>
@@ -330,7 +331,7 @@ function Skills() {
     <Section id="skills" kicker="02 — Stack" title="Technical Skills">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {SKILLS.map((s, i) => (
-          <div key={s.group} className="reveal bg-ink-panel/80 glow-border rounded-xl p-6 hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 40}ms` }}>
+          <div key={s.group} className="interactive-card reveal bg-ink-panel/80 glow-border rounded-xl p-6 transition" style={{ transitionDelay: `${i * 40}ms` }}>
             <div className="flex items-start gap-3 mb-4">
               <span className="text-cyan-glow"><Icon d={icons.spark} className="w-4 h-4"/></span>
               <div>
@@ -355,7 +356,7 @@ function Projects() {
     <Section id="projects" kicker="03 — Work" title="Featured Projects">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {PROJECTS.map((p, i) => (
-          <div key={p.title} className="reveal group bg-ink-panel/80 glow-border rounded-xl p-6 flex flex-col hover:-translate-y-1.5 transition" style={{ transitionDelay: `${i * 50}ms` }}>
+          <div key={p.title} className="interactive-card reveal group bg-ink-panel/80 glow-border rounded-xl p-6 flex flex-col transition" style={{ transitionDelay: `${i * 50}ms` }}>
             <div className="flex items-start justify-between gap-3">
               <div className={`text-xs font-mono ${p.accent === 'cyan' ? 'text-cyan-glow' : 'text-violet-glow'}`}>{p.tag}</div>
               <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-gray-500 group-hover:text-cyan-glow transition" aria-label="Code"><Icon d={icons.github} className="w-5 h-5"/></a>
@@ -377,7 +378,7 @@ function Projects() {
         ))}
       </div>
       <div className="reveal mt-10 text-center">
-        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-cyan-glow transition">
+        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="interactive-button inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-cyan-glow transition">
           <Icon d={icons.github} className="w-5 h-5"/> View all 15 repositories on GitHub <Icon d={icons.arrow} className="w-4 h-4"/>
         </a>
       </div>
@@ -390,7 +391,7 @@ function Certs() {
     <Section id="certs" kicker="04 — Recognition" title="Achievements & Certifications">
       <div className="grid sm:grid-cols-2 gap-6">
         {CERTS.map((c, i) => (
-          <div key={c.title} className="reveal bg-ink-panel/80 glow-border rounded-xl p-6 flex gap-4 items-start hover:-translate-y-1 transition" style={{ transitionDelay: `${i * 50}ms` }}>
+          <div key={c.title} className="interactive-card reveal bg-ink-panel/80 glow-border rounded-xl p-6 flex gap-4 items-start transition" style={{ transitionDelay: `${i * 50}ms` }}>
             <div className="shrink-0 w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-glow/15 via-emerald-signal/10 to-violet-glow/15 flex items-center justify-center text-cyan-glow">
               <Icon d={icons[c.icon]} className="w-5 h-5"/>
             </div>
@@ -426,7 +427,7 @@ function Experience() {
           </div>
         ))}
       </div>
-      <div className="reveal mt-12 bg-ink-panel/80 glow-border rounded-xl p-6 flex items-center justify-between flex-wrap gap-3">
+      <div className="interactive-card reveal mt-12 bg-ink-panel/80 glow-border rounded-xl p-6 flex items-center justify-between flex-wrap gap-3">
         <div>
           <h3 className="font-semibold text-white">B.Sc. Computer Science</h3>
           <p className="text-sm text-gray-400">October 6 University · GPA 3.37 / 4.0</p>
@@ -440,7 +441,7 @@ function Experience() {
 function Contact() {
   return (
     <Section id="contact" kicker="06 — Contact" title="Ready to Build Useful AI">
-      <div className="reveal contact-panel glow-border rounded-2xl p-8 sm:p-12 text-center">
+      <div className="interactive-card reveal contact-panel glow-border rounded-2xl p-8 sm:p-12 text-center">
         <p className="text-gray-300 max-w-2xl mx-auto">I'm open to AI Engineering and Data Science opportunities where the work needs more than a demo: strong retrieval, clean APIs, careful evaluation, and a path to production.</p>
         <a href={`mailto:${LINKS.email}`} className="inline-flex max-w-full items-center justify-center gap-2 mt-7 px-4 sm:px-8 py-3.5 rounded-lg text-ink text-sm sm:text-base font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">
           <Icon d={icons.mail} className="w-5 h-5 shrink-0"/> <span className="break-all">{LINKS.email}</span>

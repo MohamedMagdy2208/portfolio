@@ -51,6 +51,69 @@ body::before {
 .glow-border { border: 1px solid rgba(255,255,255,0.08); }
 .glow-border:hover { border-color: rgba(34, 211, 238, 0.45); }
 
+.brand-wordmark {
+  letter-spacing: 0.02em;
+}
+
+.interactive-card {
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 211, 238, 0.42);
+  box-shadow:
+    0 18px 44px -28px rgba(34, 211, 238, 0.62),
+    0 16px 36px -28px rgba(168, 85, 247, 0.54);
+}
+
+.interactive-button {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.interactive-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -18px rgba(34, 211, 238, 0.8);
+  opacity: 0.96;
+}
+
+.social-link {
+  display: inline-flex;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+}
+
+.profile-frame {
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+}
+
+.hero-panel:hover .profile-frame {
+  transform: scale(1.018);
+  box-shadow: 0 0 34px -10px rgba(52, 211, 153, 0.72);
+}
+
+.top-achiever-badge {
+  transition: color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.hero-panel:hover .top-achiever-badge {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 22px -14px rgba(52, 211, 153, 0.8);
+}
+
 .hero-panel,
 .contact-panel {
   background:
@@ -156,5 +219,15 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; filter: none; }
   .float, .cursor, .loader-ring, .dots::after, .animate-bounce, .pulse-dot { animation: none !important; }
+  .interactive-card,
+  .interactive-card:hover,
+  .interactive-button,
+  .interactive-button:hover,
+  .social-link,
+  .social-link:hover,
+  .profile-frame,
+  .hero-panel:hover .profile-frame {
+    transform: none;
+  }
   html { scroll-behavior: auto; }
 }
