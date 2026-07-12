@@ -20,9 +20,11 @@ const SKILLS = [
   { group: "Engineering", note: "Industrial AI and simulation workflows", items: ["Digital Twins", "Predictive Maintenance"] },
 ];
 
+const PUBLIC_REPO_COUNT = 16;
+
 const HERO_METRICS = [
   { value: "6+", label: "AI & data roles", tone: "cyan" },
-  { value: "15", label: "public repos", tone: "emerald" },
+  { value: PUBLIC_REPO_COUNT, label: "public repos", tone: "emerald" },
   { value: "2", label: "EG + KR work", tone: "amber" },
 ];
 
@@ -32,6 +34,8 @@ const FOCUS_AREAS = [
   "Digital twins and predictive maintenance",
 ];
 
+const HERO_ROLES = ["Generative AI Engineer", "Graph RAG Architect", "Computer Vision Engineer", "Digital Twin Engineer"];
+
 const PROJECTS = [
   {
     title: "Chat With CVs — RAG System",
@@ -39,7 +43,7 @@ const PROJECTS = [
     desc: "An LLM-powered RAG system that lets you chat with and query CVs/documents in natural language — retrieval pipelines over unstructured text for intelligent document Q&A.",
     impact: "Turns unstructured resumes into searchable, conversational candidate knowledge.",
     stack: ["Python", "LLMs", "RAG", "Vector DB", "LangChain"],
-    accent: "cyan", lang: "Python", stars: 1,
+    accent: "cyan", lang: "Python",
     url: "https://github.com/MohamedMagdy2208/Chat-With-CVs-Rag-System",
   },
   {
@@ -48,7 +52,7 @@ const PROJECTS = [
     desc: "A natural-language-to-SQL agent that translates plain-English questions into database queries, letting non-technical users explore data conversationally through an LLM.",
     impact: "Makes database exploration usable for business users without writing SQL.",
     stack: ["Python", "LLMs", "SQL", "AI Agents"],
-    accent: "violet", lang: "Python", stars: 1,
+    accent: "violet", lang: "Python",
     url: "https://github.com/MohamedMagdy2208/Chat-With-Database",
   },
   {
@@ -57,7 +61,7 @@ const PROJECTS = [
     desc: "A Streamlit app built on Azure AI Document Intelligence Studio for enterprise-grade document parsing, extraction and analysis — production document intelligence in action.",
     impact: "Extracts structured fields from documents for faster review and automation.",
     stack: ["Azure AI", "Streamlit", "Python", "OCR"],
-    accent: "cyan", lang: "Python", stars: 0,
+    accent: "cyan", lang: "Python",
     url: "https://github.com/MohamedMagdy2208/azure-ai-document-intelligence-studio-latest",
   },
   {
@@ -66,7 +70,7 @@ const PROJECTS = [
     desc: "A Convolutional Neural Network for classifying brain tumors from MRI scans — applying deep learning to medical imaging for high-accuracy diagnostic support.",
     impact: "Applies image classification to medical scan triage and diagnostic support.",
     stack: ["CNN", "TensorFlow", "OpenCV", "Medical Imaging"],
-    accent: "violet", lang: "Jupyter Notebook", stars: 2,
+    accent: "violet", lang: "Jupyter Notebook",
     url: "https://github.com/MohamedMagdy2208/Brain-Tumor-CNN",
   },
   {
@@ -75,7 +79,7 @@ const PROJECTS = [
     desc: "Sentiment classification powered by large language models, extracting tone and emotion from text with modern transformer-based NLP techniques.",
     impact: "Classifies customer or content sentiment with modern transformer-based NLP.",
     stack: ["Python", "LLMs", "Transformers", "NLP"],
-    accent: "cyan", lang: "Python", stars: 1,
+    accent: "cyan", lang: "Python",
     url: "https://github.com/MohamedMagdy2208/LLM-Sentiment-Analysis",
   },
   {
@@ -84,7 +88,7 @@ const PROJECTS = [
     desc: "An Artificial Neural Network predicting breast cancer diagnoses from clinical features — end-to-end ML pipeline for reliable, data-driven medical classification.",
     impact: "Builds an interpretable clinical-feature pipeline for healthcare prediction.",
     stack: ["ANN", "Scikit-Learn", "Pandas", "NumPy"],
-    accent: "violet", lang: "Jupyter Notebook", stars: 2,
+    accent: "violet", lang: "Jupyter Notebook",
     url: "https://github.com/MohamedMagdy2208/Breast-Cancer-ANN",
   },
 ];
@@ -115,6 +119,8 @@ function useReveal() {
     return () => obs.disconnect();
   }, []);
 }
+
+export const scrollBehavior = (reducedMotion) => reducedMotion ? "auto" : "smooth";
 
 /* Count-up number animation */
 function CountUp({ value, suffix = "", duration = 1400 }) {
@@ -181,12 +187,19 @@ function Nav({ active }) {
           <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="social-link flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
           <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow transition">Hire Me</a>
         </div>
-        <button className="md:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button
+          type="button"
+          className="md:hidden text-gray-300"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+        >
           <Icon d={open ? <path d="M18 6 6 18M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>} className="w-6 h-6" />
         </button>
       </div>
       {open && (
-        <div className="md:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
+        <div id="mobile-nav" className="md:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} className="hover:text-cyan-glow">{l}</a>)}
           <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-cyan-glow"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
           <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold text-center bg-gradient-to-r from-cyan-glow to-violet-glow">Hire Me</a>
@@ -197,24 +210,25 @@ function Nav({ active }) {
 }
 
 function Hero() {
-  const roles = ["Generative AI Engineer", "Graph RAG Architect", "Computer Vision Engineer", "Digital Twin Engineer"];
   const metricTone = {
     cyan: "border-cyan-glow/30 bg-cyan-glow/5 text-cyan-glow",
     emerald: "border-emerald-signal/30 bg-emerald-signal/5 text-emerald-signal",
     amber: "border-amber-proof/30 bg-amber-proof/5 text-amber-proof",
   };
+  const reducedMotion = useRef(window.matchMedia("(prefers-reduced-motion: reduce)").matches).current;
   const [idx, setIdx] = useState(0);
-  const [txt, setTxt] = useState("");
+  const [txt, setTxt] = useState(reducedMotion ? HERO_ROLES[0] : "");
   const [del, setDel] = useState(false);
   useEffect(() => {
-    const cur = roles[idx];
+    if (reducedMotion) return undefined;
+    const cur = HERO_ROLES[idx];
     let t;
     if (!del && txt.length < cur.length) t = setTimeout(() => setTxt(cur.slice(0, txt.length + 1)), 70);
     else if (!del && txt.length === cur.length) t = setTimeout(() => setDel(true), 1600);
     else if (del && txt.length > 0) t = setTimeout(() => setTxt(cur.slice(0, txt.length - 1)), 35);
-    else { setDel(false); setIdx((idx + 1) % roles.length); }
+    else { setDel(false); setIdx((idx + 1) % HERO_ROLES.length); }
     return () => clearTimeout(t);
-  }, [txt, del, idx]);
+  }, [txt, del, idx, reducedMotion]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center px-5 pb-16 pt-24">
@@ -257,7 +271,16 @@ function Hero() {
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
           <div className="hero-panel interactive-card relative w-full max-w-sm rounded-2xl border border-white/10 bg-ink-panel/80 p-5 shadow-2xl shadow-black/30 backdrop-blur">
             <div className="profile-frame relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
-              <img src="/profile.jpg" alt="Mohamed Magdy — AI Engineer" loading="eager" className="profile-photo w-full h-full object-cover object-center rounded-2xl" />
+              <img
+                src="/profile-512.webp"
+                srcSet="/profile-256.webp 256w, /profile-512.webp 512w"
+                sizes="(min-width: 640px) 256px, 224px"
+                width="512"
+                height="512"
+                alt="Mohamed Magdy — AI Engineer"
+                loading="eager"
+                className="profile-photo w-full h-full object-cover object-center rounded-2xl"
+              />
             </div>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               <span className="top-achiever-badge bg-ink-soft glow-border rounded-lg px-4 py-2 text-xs font-mono text-cyan-glow">Top achiever</span>
@@ -302,7 +325,7 @@ function About() {
   const stats = [
     { v: 12, suffix: "+", l: "AI/ML Technologies" },
     { v: 6, suffix: "+", l: "AI & Data Roles" },
-    { v: 15, suffix: "", l: "GitHub Projects" },
+    { v: PUBLIC_REPO_COUNT, suffix: "", l: "GitHub Projects" },
     { v: 2, suffix: "", l: "Countries (EG · KR)" },
   ];
   return (
@@ -379,7 +402,7 @@ function Projects() {
       </div>
       <div className="reveal mt-10 text-center">
         <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="interactive-button inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold glow-border text-gray-200 hover:text-cyan-glow transition">
-          <Icon d={icons.github} className="w-5 h-5"/> View all 15 repositories on GitHub <Icon d={icons.arrow} className="w-4 h-4"/>
+          <Icon d={icons.github} className="w-5 h-5"/> View all repositories on GitHub <Icon d={icons.arrow} className="w-4 h-4"/>
         </a>
       </div>
     </Section>
@@ -462,7 +485,7 @@ function Contact() {
         </div>
         <p className="mt-6 text-sm text-gray-500 font-mono flex items-center justify-center gap-2"><Icon d={icons.pin} className="w-4 h-4"/> {LINKS.location} · {LINKS.phone}</p>
       </div>
-      <p className="text-center text-gray-600 text-xs mt-12 font-mono">© 2026 Mohamed Magdy · <a href="https://mohamedmagdy.site" className="hover:text-cyan-glow transition">mohamedmagdy.site</a> · Built with Vite + React + Tailwind</p>
+      <p className="text-center text-gray-400 text-xs mt-12 font-mono">© 2026 Mohamed Magdy · <a href="https://mohamedmagdy.site" className="hover:text-cyan-glow transition">mohamedmagdy.site</a> · Built with Vite + React + Tailwind</p>
     </Section>
   );
 }
@@ -474,8 +497,12 @@ function BackToTop() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  const scrollToTop = () => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: scrollBehavior(reducedMotion) });
+  };
   return (
-    <button id="back-to-top" className={show ? "show" : ""} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top">
+    <button id="back-to-top" className={show ? "show" : ""} onClick={scrollToTop} aria-label="Back to top">
       <Icon d={icons.up} className="w-5 h-5"/>
     </button>
   );
@@ -509,14 +536,17 @@ function App() {
   useScrollUI(setActive);
   return (
     <div className="relative z-10">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Nav active={active} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Certs />
-      <Experience />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Certs />
+        <Experience />
+        <Contact />
+      </main>
       <BackToTop />
     </div>
   );
@@ -593,17 +623,3 @@ export default App;
   resize();
   draw(); // animates if motion allowed, else renders a single static frame
 })();
-
-/* ---------------- Preloader removal ---------------- */
-function hidePreloader() {
-  setTimeout(() => {
-    const pre = document.getElementById("preloader");
-    if (pre) pre.classList.add("hide");
-  }, 500);
-}
-
-if (document.readyState === "complete") {
-  hidePreloader();
-} else {
-  window.addEventListener("load", hidePreloader, { once: true });
-}
