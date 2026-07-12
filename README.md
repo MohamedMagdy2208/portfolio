@@ -9,22 +9,23 @@ Live domain: **https://mohamedmagdy.site**
 - Vite for local development and production builds
 - React 18 for the UI
 - Tailwind CSS compiled locally
-- Custom CSS for the neural dark theme, animations, preloader, and canvas backdrop
+- Custom CSS for the neural dark theme, animations, and canvas backdrop
 - Static assets served from `public/`
 
 ## Files
 
 | Path | Purpose |
 | --- | --- |
-| `index.html` | Page shell, SEO/Open Graph metadata, favicon, preloader root |
+| `index.html` | Page shell, SEO/Open Graph metadata, and favicon |
 | `src/main.jsx` | React entrypoint |
 | `src/App.jsx` | Portfolio content, components, and canvas behavior |
 | `src/styles.css` | Tailwind layers plus custom theme styles |
 | `public/profile.jpg` | Hero photo |
+| `public/profile-*.webp` | Responsive hero-photo variants |
 | `public/Mohamed_Magdy_CV.pdf` | Downloadable CV |
 | `public/robots.txt` | Search-engine crawl rules |
 | `public/sitemap.xml` | Sitemap for indexing |
-| `public/CNAME` | Custom domain for GitHub Pages |
+| `tests/portfolio.test.mjs` | Accessibility and performance regression checks |
 
 ## Local Development
 

@@ -155,6 +155,23 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 70;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #10101a;
+  color: #f3f4f6;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Active nav link */
 .nav-link.active { color: #22d3ee; }
 .nav-link.active::after {
@@ -194,28 +211,6 @@ button:focus-visible {
 #back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 #back-to-top:hover { box-shadow: 0 0 20px -2px rgba(34,211,238,0.6); }
 
-/* Preloader */
-#preloader {
-  position: fixed; inset: 0; z-index: 100;
-  background: #0a0a0f;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 18px;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-#preloader.hide { opacity: 0; visibility: hidden; }
-.loader-ring {
-  width: 54px; height: 54px;
-  border-radius: 50%;
-  border: 3px solid rgba(255,255,255,0.08);
-  border-top-color: #22d3ee;
-  border-right-color: #a855f7;
-  animation: spin 0.9s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loader-text { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #6b7280; letter-spacing: 1px; }
-.dots::after { content: ""; animation: dots 1.4s steps(4, end) infinite; }
-@keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
-
 /* Scrollbar */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #0a0a0f; }
@@ -224,7 +219,7 @@ button:focus-visible {
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; filter: none; }
-  .float, .cursor, .loader-ring, .dots::after, .animate-bounce, .pulse-dot { animation: none !important; }
+  .float, .cursor, .animate-bounce, .pulse-dot { animation: none !important; }
   .interactive-card,
   .interactive-card:hover,
   .interactive-button,

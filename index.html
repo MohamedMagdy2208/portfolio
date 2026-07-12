@@ -17,10 +17,12 @@
   <meta property="og:title" content="Mohamed Magdy — AI Engineer" />
   <meta property="og:description" content="AI Engineer specializing in Generative AI, Graph RAG, Computer Vision, and Industry 4.0 Digital Twins." />
   <meta property="og:image" content="https://mohamedmagdy.site/profile.jpg" />
+  <meta property="og:image:alt" content="Portrait of Mohamed Magdy, AI Engineer" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mohamed Magdy — AI Engineer" />
   <meta name="twitter:description" content="AI Engineer specializing in Generative AI, Graph RAG & Computer Vision." />
   <meta name="twitter:image" content="https://mohamedmagdy.site/profile.jpg" />
+  <meta name="twitter:image:alt" content="Portrait of Mohamed Magdy, AI Engineer" />
 
   <!-- Inline SVG favicon (neural node) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='bold' text-anchor='middle' fill='%2322d3ee'%3EM%3C/text%3E%3C/svg%3E" />
@@ -30,16 +32,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body class="bg-ink text-gray-200 font-sans antialiased">
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="loader-ring"></div>
-    <div class="loader-text">Initializing<span class="dots"></span></div>
-  </div>
-
   <!-- Scroll progress bar -->
-  <div id="scroll-progress"></div>
+  <div id="scroll-progress" aria-hidden="true"></div>
 
-  <canvas id="neural-canvas"></canvas>
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
