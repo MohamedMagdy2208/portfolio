@@ -83,13 +83,13 @@ const PROJECTS = [
     url: "https://github.com/MohamedMagdy2208/LLM-Sentiment-Analysis",
   },
   {
-    title: "Breast Cancer Prediction — ANN",
-    tag: "Machine Learning · Healthcare",
-    desc: "An Artificial Neural Network predicting breast cancer diagnoses from clinical features — end-to-end ML pipeline for reliable, data-driven medical classification.",
-    impact: "Builds an interpretable clinical-feature pipeline for healthcare prediction.",
-    stack: ["ANN", "Scikit-Learn", "Pandas", "NumPy"],
-    accent: "violet", lang: "Jupyter Notebook",
-    url: "https://github.com/MohamedMagdy2208/Breast-Cancer-ANN",
+    title: "Airport Lost & Found — AI Operations Platform",
+    tag: "Generative AI · Graph RAG",
+    desc: "An Azure-native full-stack MVP for bilingual passenger and staff intake, AI image/OCR enrichment, hybrid item matching, claim verification, and custody tracking with human approval gates.",
+    impact: "Connects retrieval, operational workflows, security controls, and human review into an end-to-end airport recovery platform.",
+    stack: ["FastAPI", "React", "Graph RAG", "Azure AI Search", "PostgreSQL"],
+    accent: "violet", lang: "Python",
+    url: "https://github.com/MohamedMagdy2208/airport-lost-found-system",
   },
 ];
 

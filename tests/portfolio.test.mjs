@@ -71,3 +71,11 @@ test("GitHub CTA does not hardcode a repository count", async (t) => {
   assert.match(html, /View all repositories on GitHub/);
   assert.doesNotMatch(html, /View all \d+ repositories/);
 });
+
+test("Featured Projects contains Airport Lost & Found instead of Breast Cancer ANN", async (t) => {
+  const html = await renderApp(t);
+
+  assert.match(html, /Airport Lost &amp; Found — AI Operations Platform/);
+  assert.match(html, /https:\/\/github\.com\/MohamedMagdy2208\/airport-lost-found-system/);
+  assert.doesNotMatch(html, /Breast Cancer Prediction/);
+});
