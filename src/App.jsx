@@ -38,6 +38,15 @@ const HERO_ROLES = ["Generative AI Engineer", "Graph RAG Architect", "Computer V
 
 const PROJECTS = [
   {
+    title: "Airport Lost & Found — AI Operations Platform",
+    tag: "Generative AI · Graph RAG",
+    desc: "An Azure-native full-stack MVP for bilingual passenger and staff intake, AI image/OCR enrichment, hybrid item matching, claim verification, and custody tracking with human approval gates.",
+    impact: "Connects retrieval, operational workflows, security controls, and human review into an end-to-end airport recovery platform.",
+    stack: ["FastAPI", "React", "Graph RAG", "Azure AI Search", "PostgreSQL"],
+    accent: "violet", lang: "Python",
+    url: "https://github.com/MohamedMagdy2208/airport-lost-found-system",
+  },
+  {
     title: "Chat With CVs — RAG System",
     tag: "Generative AI · RAG",
     desc: "An LLM-powered RAG system that lets you chat with and query CVs/documents in natural language — retrieval pipelines over unstructured text for intelligent document Q&A.",
@@ -81,15 +90,6 @@ const PROJECTS = [
     stack: ["Python", "LLMs", "Transformers", "NLP"],
     accent: "cyan", lang: "Python",
     url: "https://github.com/MohamedMagdy2208/LLM-Sentiment-Analysis",
-  },
-  {
-    title: "Airport Lost & Found — AI Operations Platform",
-    tag: "Generative AI · Graph RAG",
-    desc: "An Azure-native full-stack MVP for bilingual passenger and staff intake, AI image/OCR enrichment, hybrid item matching, claim verification, and custody tracking with human approval gates.",
-    impact: "Connects retrieval, operational workflows, security controls, and human review into an end-to-end airport recovery platform.",
-    stack: ["FastAPI", "React", "Graph RAG", "Azure AI Search", "PostgreSQL"],
-    accent: "violet", lang: "Python",
-    url: "https://github.com/MohamedMagdy2208/airport-lost-found-system",
   },
 ];
 
