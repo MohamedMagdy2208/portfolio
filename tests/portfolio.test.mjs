@@ -78,4 +78,5 @@ test("Featured Projects contains Airport Lost & Found instead of Breast Cancer A
   assert.match(html, /Airport Lost &amp; Found — AI Operations Platform/);
   assert.match(html, /https:\/\/github\.com\/MohamedMagdy2208\/airport-lost-found-system/);
   assert.doesNotMatch(html, /Breast Cancer Prediction/);
+  assert.ok(html.indexOf("Airport Lost &amp; Found — AI Operations Platform") < html.indexOf("Chat With CVs — RAG System"));
 });
