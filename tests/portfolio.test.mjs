@@ -80,3 +80,17 @@ test("Featured Projects contains Airport Lost & Found instead of Breast Cancer A
   assert.doesNotMatch(html, /Breast Cancer Prediction/);
   assert.ok(html.indexOf("Airport Lost &amp; Found — AI Operations Platform") < html.indexOf("Chat With CVs — RAG System"));
 });
+
+test("Research section presents academic work without claiming publications", async (t) => {
+  const html = await renderApp(t);
+
+  assert.match(html, /id="research"/);
+  assert.match(html, /Research &amp; Academic Projects/);
+  assert.match(html, /Tomato Leaf Disease Detection/);
+  assert.match(html, /Adaptive Belt Monitoring System/);
+  assert.match(html, /Industrial Digital Twin Systems/);
+  assert.match(html, /Construction Safety AI/);
+  assert.match(html, /https:\/\/github\.com\/MohamedMagdy2208\/ABM-Adaptive-Belt-Monitoring/);
+  assert.match(html, /Visiting Research Fellow \(Fully Funded Scholarship\)/);
+  assert.doesNotMatch(html, /Publications &amp; Research/);
+});
