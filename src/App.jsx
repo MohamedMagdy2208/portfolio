@@ -458,12 +458,12 @@ function Projects() {
 }
 
 function Research() {
-  const focus = ["Computer vision", "Digital twins", "Sensor fusion", "Intelligent decision support"];
+  const focus = ["Generative AI", "Computer Vision", "Digital Twins", "Physical AI", "Graph RAG", "Safety-Critical AI"];
   return (
     <Section id="research" kicker="04 — Research" title="Research & Academic Projects">
       <div className="reveal mb-8 grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-end">
         <p className="max-w-3xl text-gray-400 leading-relaxed">
-          My research focus is AI for cyber-physical systems: connecting perception, simulation, and sensor data to practical decision support in agriculture, manufacturing, and construction safety.
+          My research interests span trustworthy generative AI and intelligent cyber-physical systems, connecting retrieval, visual perception, simulation, and sensor data for practical decision support in industry and safety-critical environments.
         </p>
         <div className="flex flex-wrap gap-2 lg:justify-end">
           {focus.map((item) => <span key={item} className="rounded-full border border-emerald-signal/20 bg-emerald-signal/5 px-3 py-1 text-[11px] font-mono text-emerald-signal">{item}</span>)}
