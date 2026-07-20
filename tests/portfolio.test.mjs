@@ -92,5 +92,8 @@ test("Research section presents academic work without claiming publications", as
   assert.match(html, /Construction Safety AI/);
   assert.match(html, /https:\/\/github\.com\/MohamedMagdy2208\/ABM-Adaptive-Belt-Monitoring/);
   assert.match(html, /Visiting Research Fellow \(Fully Funded Scholarship\)/);
+  for (const interest of ["Generative AI", "Computer Vision", "Digital Twins", "Physical AI", "Graph RAG", "Safety-Critical AI"]) {
+    assert.match(html, new RegExp(interest));
+  }
   assert.doesNotMatch(html, /Publications &amp; Research/);
 });
