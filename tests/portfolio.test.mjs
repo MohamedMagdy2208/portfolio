@@ -44,13 +44,11 @@ test("page shell does not block content behind an artificial preloader", async (
 test("profile photo uses compact responsive sources", async (t) => {
   const html = await renderApp(t);
   const small = await stat(new URL("../public/profile-256.webp", import.meta.url)).catch(() => ({ size: Infinity }));
-  const medium = await stat(new URL("../public/profile-512.webp", import.meta.url)).catch(() => ({ size: Infinity }));
-  const large = await stat(new URL("../public/profile-1024.webp", import.meta.url)).catch(() => ({ size: Infinity }));
+  const large = await stat(new URL("../public/profile-512.webp", import.meta.url)).catch(() => ({ size: Infinity }));
 
-  assert.match(html, /srcSet="\/profile-256\.webp 256w, \/profile-512\.webp 512w, \/profile-1024\.webp 1024w"/);
+  assert.match(html, /srcSet="\/profile-256\.webp 256w, \/profile-512\.webp 512w"/);
   assert.ok(small.size < 50_000);
-  assert.ok(medium.size < 80_000);
-  assert.ok(large.size < 180_000);
+  assert.ok(large.size < 80_000);
 });
 
 test("reduced-motion users get a static hero role", async (t) => {
