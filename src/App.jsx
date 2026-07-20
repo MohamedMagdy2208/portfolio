@@ -321,7 +321,7 @@ function Hero() {
             <div className="profile-frame relative mx-auto w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[3px] bg-gradient-to-br from-cyan-glow via-emerald-signal to-violet-glow glow-cyan">
               <img
                 src="/profile-512.webp"
-                srcSet="/profile-256.webp 256w, /profile-512.webp 512w"
+                srcSet="/profile-256.webp 256w, /profile-512.webp 512w, /profile-1024.webp 1024w"
                 sizes="(min-width: 640px) 256px, 224px"
                 width="512"
                 height="512"
