@@ -93,11 +93,59 @@ const PROJECTS = [
   },
 ];
 
+const RESEARCH = [
+  {
+    code: "R-01",
+    title: "Tomato Leaf Disease Detection",
+    field: "Computer Vision · Plant Health",
+    period: "Feb 2026 – May 2026",
+    affiliation: "Academic research project · Cairo, Egypt",
+    question: "How can a single-stage vision pipeline localize and classify tomato leaf diseases under variable illumination?",
+    work: "Built an end-to-end YOLO pipeline with augmentation and preprocessing for joint localization and multi-class disease classification.",
+    methods: ["YOLO", "Data Augmentation", "Image Preprocessing"],
+    status: "Academic research project",
+  },
+  {
+    code: "R-02",
+    title: "Adaptive Belt Monitoring System",
+    field: "Cyber-Physical Systems · Predictive Maintenance",
+    period: "Oct 2025 – Jan 2026",
+    affiliation: "NTI Digital Twin Capstone · Cairo, Egypt",
+    question: "Can vibration signals identify conveyor-belt tension states early enough to support preventive maintenance?",
+    work: "Designed a real-time Digital Twin workflow linking Python inference with Unity 3D through MQTT and multi-sensor vibration data.",
+    methods: ["Python", "Unity 3D", "MQTT", "Sensor Fusion"],
+    status: "Public implementation",
+    url: "https://github.com/MohamedMagdy2208/ABM-Adaptive-Belt-Monitoring",
+  },
+  {
+    code: "R-03",
+    title: "Industrial Digital Twin Systems",
+    field: "Industry 4.0 · Applied Research",
+    period: "Jan 2026 – Mar 2026",
+    affiliation: "Siemens Industry 4.0 Innovation Center · Egypt",
+    question: "How can simulation and sensor-driven models reduce downtime and improve factory asset workflows?",
+    work: "Modeled factory assets with Digital Twin simulations and investigated predictive-maintenance pipelines using vibration and thermal sensor data.",
+    methods: ["Digital Twins", "Predictive Maintenance", "Sensor Analytics"],
+    status: "Applied research experience",
+  },
+  {
+    code: "R-04",
+    title: "Construction Safety AI",
+    field: "Computer Vision · Digital Twins",
+    period: "Mar 2025",
+    affiliation: "ContiLab · Chung-Ang University · Seoul, South Korea",
+    question: "How can real-time object detection and Digital Twins support predictive safety monitoring on construction sites?",
+    work: "Collaborated with graduate researchers to investigate computer-vision systems for hazard environments and explore integration with Unity-based Digital Twins.",
+    methods: ["Object Detection", "Unity", "Digital Twins", "Safety AI"],
+    status: "Fully funded visiting research",
+  },
+];
+
 const EXPERIENCE = [
   { role: "AI Engineer — Client Solutions & GenAI", org: "Global Brands Group (GBG)", loc: "Cairo, Egypt", date: "Feb 2026 – Present", points: ["Develop client-facing generative AI solutions, translating business requirements into production-ready AI systems.", "Architected an Azure-based Airport Lost & Found platform using LLMs, Graph RAG, FastAPI, and Redis.", "Designed hybrid retrieval pipelines combining HNSW vector search with BM25 keyword search, using LangChain and LangSmith for orchestration, tracing, and evaluation."] },
   { role: "AI & Digital Twin Engineer Intern", org: "Siemens Industry 4.0 Innovation Center (ITIDA)", loc: "New Administrative Capital, Egypt", date: "Jan 2026 – Mar 2026", points: ["Built Digital Twin simulations to model and optimize manufacturing workflows.", "Implemented AI-based monitoring for smart factories to reduce downtime.", "Designed predictive maintenance algorithms from real-time sensor data."] },
   { role: "Digital Twin Engineering Trainee", org: "National Telecommunication Institute (NTI)", loc: "Cairo, Egypt", date: "Oct 2025 – Jan 2026", points: ["Built end-to-end predictive maintenance ML models to forecast equipment failures.", "Integrated AI models into real-time dashboards for engineering teams.", "Optimized industrial workflow simulations, reducing process latency."] },
-  { role: "Research Scholar — ContiLab (Fully Funded)", org: "Chung-Ang University (CAU)", loc: "Seoul, South Korea", date: "Mar 2025", points: ["Won a competitive fully funded scholarship in Construction Safety Management.", "Developed YOLO Computer Vision models for real-time hazard detection.", "Engineered Unity Digital Twin simulations for complex safety scenarios."] },
+  { role: "Visiting Research Fellow (Fully Funded Scholarship)", org: "ContiLab, Chung-Ang University (CAU)", loc: "Seoul, South Korea", date: "Mar 2025", points: ["Selected for a competitive, fully funded international research scholarship focused on Construction Safety Management.", "Collaborated with graduate researchers to investigate computer-vision systems in real-world hazard environments.", "Explored the integration of real-time object detection with Unity-based Digital Twins for predictive site safety."] },
   { role: "AI & Data Science Trainee — IBM Track", org: "Digital Egypt Pioneers (DEPI), MCIT", loc: "Cairo, Egypt", date: "Apr 2024 – Oct 2024", points: ["Mastered advanced Data Science: Python, SQL, Deep Learning.", "Built and deployed a full-stack ML capstone solving a real business problem.", "Applied statistical analysis to optimize decision-making."] },
   { role: "Data Analysis Intern", org: "Fawry MSME Finance", loc: "Cairo, Egypt", date: "Jul 2024 – Sep 2024", points: ["Designed executive KPI dashboards in Power BI for Marketing & Sales.", "Automated reporting with Python and Excel.", "Built SQL/Pandas pipelines for high-quality data."] },
 ];
@@ -175,21 +223,21 @@ const icons = {
 /* ---------------- COMPONENTS ---------------- */
 function Nav({ active }) {
   const [open, setOpen] = useState(false);
-  const links = ["About", "Skills", "Projects", "Experience", "Contact"];
+  const links = ["About", "Skills", "Projects", "Research", "Experience", "Contact"];
   return (
     <nav className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         <a href="#home" className="font-semibold text-base sm:text-lg text-gray-100 hover:text-cyan-glow transition-colors">
           Mohamed Magdy
         </a>
-        <div className="hidden md:flex items-center gap-7 text-sm text-gray-400">
+        <div className="hidden lg:flex items-center gap-6 text-sm text-gray-400">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link hover:text-cyan-glow transition-colors ${active === l.toLowerCase() ? "active" : ""}`}>{l}</a>)}
           <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download className="social-link flex items-center gap-1.5 text-gray-300 hover:text-cyan-glow transition"><Icon d={icons.download} className="w-4 h-4"/> CV</a>
           <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow transition">Hire Me</a>
         </div>
         <button
           type="button"
-          className="md:hidden text-gray-300"
+          className="lg:hidden text-gray-300"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Menu"}
           aria-expanded={open}
@@ -199,7 +247,7 @@ function Nav({ active }) {
         </button>
       </div>
       {open && (
-        <div id="mobile-nav" className="md:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
+        <div id="mobile-nav" className="lg:hidden bg-ink-soft border-t border-white/5 px-5 py-4 flex flex-col gap-4 text-gray-300">
           {links.map((l) => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} className="hover:text-cyan-glow">{l}</a>)}
           <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" download onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-cyan-glow"><Icon d={icons.download} className="w-4 h-4"/> Download CV</a>
           <a href={`mailto:${LINKS.email}`} className="interactive-button px-4 py-2 rounded-lg text-ink font-semibold text-center bg-gradient-to-r from-cyan-glow to-violet-glow">Hire Me</a>
@@ -409,9 +457,52 @@ function Projects() {
   );
 }
 
+function Research() {
+  const focus = ["Computer vision", "Digital twins", "Sensor fusion", "Intelligent decision support"];
+  return (
+    <Section id="research" kicker="04 — Research" title="Research & Academic Projects">
+      <div className="reveal mb-8 grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+        <p className="max-w-3xl text-gray-400 leading-relaxed">
+          My research focus is AI for cyber-physical systems: connecting perception, simulation, and sensor data to practical decision support in agriculture, manufacturing, and construction safety.
+        </p>
+        <div className="flex flex-wrap gap-2 lg:justify-end">
+          {focus.map((item) => <span key={item} className="rounded-full border border-emerald-signal/20 bg-emerald-signal/5 px-3 py-1 text-[11px] font-mono text-emerald-signal">{item}</span>)}
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        {RESEARCH.map((item, index) => (
+          <article key={item.code} className="interactive-card reveal overflow-hidden rounded-xl border border-white/10 bg-ink-panel/80" style={{ transitionDelay: `${index * 50}ms` }}>
+            <div className="flex items-center justify-between gap-4 border-b border-white/5 bg-white/[0.025] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+              <span className="text-cyan-glow">{item.code}</span>
+              <span className="text-gray-500">{item.period}</span>
+            </div>
+            <div className="p-6">
+              <p className="text-xs font-mono text-violet-glow">{item.field}</p>
+              <h3 className="mt-2 text-xl font-semibold text-white">{item.title}</h3>
+              <p className="mt-1 text-sm text-gray-500">{item.affiliation}</p>
+              <div className="mt-5 border-l-2 border-cyan-glow/60 pl-4">
+                <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-cyan-glow">Research question</p>
+                <p className="mt-1 text-sm leading-relaxed text-gray-300">{item.question}</p>
+              </div>
+              <p className="mt-5 text-sm leading-relaxed text-gray-400">{item.work}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {item.methods.map((method) => <span key={method} className="rounded border border-white/5 bg-white/5 px-2 py-1 text-[11px] font-mono text-gray-400">{method}</span>)}
+              </div>
+              <div className="mt-5 flex items-center justify-between gap-4 border-t border-white/5 pt-4 text-xs font-mono">
+                <span className="flex items-center gap-2 text-emerald-signal"><span className="h-2 w-2 rounded-full bg-emerald-signal"></span>{item.status}</span>
+                {item.url && <a href={item.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-gray-400 transition hover:text-cyan-glow"><Icon d={icons.github} className="h-4 w-4"/> Repository <Icon d={icons.arrow} className="h-3.5 w-3.5"/></a>}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 function Certs() {
   return (
-    <Section id="certs" kicker="04 — Recognition" title="Achievements & Certifications">
+    <Section id="certs" kicker="05 — Recognition" title="Achievements & Certifications">
       <div className="grid sm:grid-cols-2 gap-6">
         {CERTS.map((c, i) => (
           <div key={c.title} className="interactive-card reveal bg-ink-panel/80 glow-border rounded-xl p-6 flex gap-4 items-start transition" style={{ transitionDelay: `${i * 50}ms` }}>
@@ -432,7 +523,7 @@ function Certs() {
 
 function Experience() {
   return (
-    <Section id="experience" kicker="05 — Journey" title="Experience">
+    <Section id="experience" kicker="06 — Journey" title="Experience">
       <div className="relative border-l border-white/10 ml-3 space-y-10">
         {EXPERIENCE.map((e, i) => (
           <div key={i} className="reveal relative pl-8">
@@ -463,7 +554,7 @@ function Experience() {
 
 function Contact() {
   return (
-    <Section id="contact" kicker="06 — Contact" title="Ready to Build Useful AI">
+    <Section id="contact" kicker="07 — Contact" title="Ready to Build Useful AI">
       <div className="interactive-card reveal contact-panel glow-border rounded-2xl p-8 sm:p-12 text-center">
         <p className="text-gray-300 max-w-2xl mx-auto">I'm open to AI Engineering and Data Science opportunities where the work needs more than a demo: strong retrieval, clean APIs, careful evaluation, and a path to production.</p>
         <a href={`mailto:${LINKS.email}`} className="inline-flex max-w-full items-center justify-center gap-2 mt-7 px-4 sm:px-8 py-3.5 rounded-lg text-ink text-sm sm:text-base font-semibold bg-gradient-to-r from-cyan-glow to-violet-glow hover:opacity-90 transition">
@@ -512,7 +603,7 @@ function BackToTop() {
 function useScrollUI(setActive) {
   useEffect(() => {
     const bar = document.getElementById("scroll-progress");
-    const ids = ["about", "skills", "projects", "certs", "experience", "contact"];
+    const ids = ["about", "skills", "projects", "research", "certs", "experience", "contact"];
     const onScroll = () => {
       const h = document.documentElement;
       const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
@@ -543,6 +634,7 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Research />
         <Certs />
         <Experience />
         <Contact />
